@@ -4998,7 +4998,7 @@
       <a name="inputs" val="4"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(410,490)" name="OR Gate">
+    <comp lib="1" loc="(420,490)" name="OR Gate">
       <a name="size" val="30"/>
     </comp>
     <comp lib="2" loc="(380,360)" name="Multiplexer">
@@ -5043,8 +5043,8 @@
     <wire from="(320,630)" to="(330,630)"/>
     <wire from="(330,610)" to="(330,620)"/>
     <wire from="(350,450)" to="(360,450)"/>
-    <wire from="(350,480)" to="(380,480)"/>
-    <wire from="(350,500)" to="(380,500)"/>
+    <wire from="(350,480)" to="(390,480)"/>
+    <wire from="(350,500)" to="(390,500)"/>
     <wire from="(360,380)" to="(360,450)"/>
     <wire from="(370,610)" to="(410,610)"/>
     <wire from="(380,360)" to="(680,360)"/>
@@ -5052,7 +5052,6 @@
     <wire from="(410,140)" to="(420,140)"/>
     <wire from="(410,170)" to="(420,170)"/>
     <wire from="(410,200)" to="(420,200)"/>
-    <wire from="(410,490)" to="(420,490)"/>
     <wire from="(420,440)" to="(420,490)"/>
     <wire from="(420,440)" to="(600,440)"/>
     <wire from="(520,460)" to="(550,460)"/>

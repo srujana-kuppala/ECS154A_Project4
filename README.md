@@ -1,7 +1,7 @@
 # Project 4 README
 
 Student 1: Full Name 1 (123456789)
-Student 2: Full Name 2 (123456798)
+Student 2: Lucia Zeng (920689462)
 
 ## Project Status
 This the current status of the project ...
