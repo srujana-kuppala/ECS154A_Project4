@@ -4263,12 +4263,24 @@
       <a name="labelfont" val="SansSerif bold 12"/>
       <a name="output" val="true"/>
     </comp>
+    <comp loc="(340,420)" name="VPWBFrameQueue"/>
+    <comp loc="(350,530)" name="VPWBSRO"/>
+    <comp loc="(650,510)" name="VPWBArbiter"/>
     <wire from="(180,100)" to="(200,100)"/>
     <wire from="(180,150)" to="(200,150)"/>
     <wire from="(180,180)" to="(200,180)"/>
     <wire from="(180,210)" to="(200,210)"/>
+    <wire from="(240,500)" to="(240,520)"/>
+    <wire from="(240,500)" to="(370,500)"/>
     <wire from="(300,240)" to="(300,260)"/>
+    <wire from="(340,420)" to="(370,420)"/>
     <wire from="(350,240)" to="(350,260)"/>
+    <wire from="(350,530)" to="(430,530)"/>
+    <wire from="(350,550)" to="(400,550)"/>
+    <wire from="(350,570)" to="(430,570)"/>
+    <wire from="(370,420)" to="(370,500)"/>
+    <wire from="(400,550)" to="(400,590)"/>
+    <wire from="(400,590)" to="(430,590)"/>
     <wire from="(490,120)" to="(510,120)"/>
     <wire from="(490,90)" to="(510,90)"/>
   </circuit>
