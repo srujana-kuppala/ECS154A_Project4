@@ -4111,6 +4111,30 @@
       <a name="label" val="CLK"/>
       <a name="labelfont" val="SansSerif bold 12"/>
     </comp>
+    <comp lib="0" loc="(240,590)" name="Tunnel">
+      <a name="label" val="ADDR"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(270,490)" name="Tunnel">
+      <a name="label" val="DATAOUT"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+      <a name="width" val="12"/>
+    </comp>
+    <comp lib="0" loc="(370,260)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="CS"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(370,280)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="W"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(370,300)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="ADDR"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
     <comp lib="0" loc="(370,60)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="SER_OUT"/>
@@ -4134,6 +4158,72 @@
       <a name="label" val="SER_IN"/>
       <a name="labelfont" val="SansSerif bold 12"/>
     </comp>
+    <comp lib="0" loc="(430,450)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="CS"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(430,470)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="W"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(430,490)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="ADDR"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(500,240)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="DATAIN"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+      <a name="width" val="12"/>
+    </comp>
+    <comp lib="0" loc="(640,350)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="CLK"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(680,550)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="CLK"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(680,720)" name="Tunnel">
+      <a name="facing" val="north"/>
+      <a name="label" val="CLK"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(820,450)" name="Tunnel">
+      <a name="label" val="SER_OUT"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(830,470)" name="Tunnel">
+      <a name="label" val="SER_IN"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="1" loc="(430,280)" name="AND Gate">
+      <a name="inputs" val="3"/>
+      <a name="negate0" val="true"/>
+      <a name="negate1" val="true"/>
+      <a name="negate2" val="true"/>
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(490,470)" name="AND Gate">
+      <a name="inputs" val="3"/>
+      <a name="negate0" val="true"/>
+      <a name="negate1" val="true"/>
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="2" loc="(230,490)" name="Multiplexer">
+      <a name="width" val="12"/>
+    </comp>
+    <comp lib="4" loc="(660,270)" name="Register">
+      <a name="appearance" val="classic"/>
+      <a name="width" val="12"/>
+    </comp>
+    <comp loc="(790,450)" name="VPWBTX"/>
+    <comp loc="(790,620)" name="VPWBRX"/>
     <wire from="(150,120)" to="(160,120)"/>
     <wire from="(150,150)" to="(160,150)"/>
     <wire from="(150,180)" to="(160,180)"/>
@@ -4141,9 +4231,42 @@
     <wire from="(150,270)" to="(160,270)"/>
     <wire from="(150,60)" to="(160,60)"/>
     <wire from="(150,90)" to="(160,90)"/>
+    <wire from="(160,440)" to="(160,480)"/>
+    <wire from="(160,480)" to="(200,480)"/>
+    <wire from="(180,500)" to="(180,620)"/>
+    <wire from="(180,500)" to="(200,500)"/>
+    <wire from="(180,620)" to="(570,620)"/>
+    <wire from="(210,510)" to="(210,590)"/>
+    <wire from="(210,590)" to="(240,590)"/>
+    <wire from="(230,490)" to="(270,490)"/>
     <wire from="(240,320)" to="(240,330)"/>
+    <wire from="(370,260)" to="(390,260)"/>
+    <wire from="(370,280)" to="(390,280)"/>
+    <wire from="(370,300)" to="(390,300)"/>
     <wire from="(370,60)" to="(390,60)"/>
     <wire from="(370,90)" to="(390,90)"/>
+    <wire from="(390,260)" to="(390,270)"/>
+    <wire from="(390,290)" to="(390,300)"/>
+    <wire from="(430,280)" to="(630,280)"/>
+    <wire from="(430,450)" to="(450,450)"/>
+    <wire from="(430,470)" to="(450,470)"/>
+    <wire from="(430,490)" to="(460,490)"/>
+    <wire from="(450,450)" to="(450,460)"/>
+    <wire from="(460,480)" to="(460,490)"/>
+    <wire from="(490,470)" to="(570,470)"/>
+    <wire from="(500,240)" to="(510,240)"/>
+    <wire from="(510,240)" to="(510,270)"/>
+    <wire from="(510,270)" to="(510,450)"/>
+    <wire from="(510,270)" to="(630,270)"/>
+    <wire from="(510,450)" to="(570,450)"/>
+    <wire from="(640,290)" to="(640,350)"/>
+    <wire from="(680,520)" to="(680,550)"/>
+    <wire from="(680,690)" to="(680,720)"/>
+    <wire from="(790,450)" to="(820,450)"/>
+    <wire from="(790,470)" to="(810,470)"/>
+    <wire from="(790,620)" to="(810,620)"/>
+    <wire from="(810,470)" to="(810,620)"/>
+    <wire from="(810,470)" to="(830,470)"/>
   </circuit>
   <circuit name="VPWBTX">
     <a name="appearance" val="custom"/>
