@@ -1,6 +1,6 @@
 # Project 4 README
 
-Student 1: Full Name 1 (123456789)
+Student 1: Srujana Kuppala (921005375)
 Student 2: Lucia Zeng (920689462)
 
 ## Project Status
