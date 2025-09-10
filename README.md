@@ -4,10 +4,10 @@ Student 1: Srujana Kuppala (921005375)
 Student 2: Lucia Zeng (920689462)
 
 ## Project Status
-Arbiter, Observer, and SRO (I thinK?) are completed, with varying progress on the other modules. 
+Arbiter and Observer have some problems and (I thinK?) the rest are completed.
 
 ## Known Issues
-Currently, the SRI is almost complete but not quite complete (SRI doesn't start over, counter is also not quite right), most of the logic should be in the frame queue but not all of it, and the rest only has it partially complete.
+Observer seems to have problems with 2 1's in a row, and the arbiter keeps shifting in 1's when the shift register is full of 0's.
 
 ## References
 
@@ -130,20 +130,21 @@ Create a bus controller that sends and recieves 12- bit frames of data.
 ### Response 
 For the VPWBObserver- there is an error if 3 1's have been recieved in a row (data of which can be held in D flip flops (RX1-3, and resets when the module is not enabled)) or when it's already in an error state and that it's currently not idle. If all RX bits are 0, then the bus is currently idle. There's only a new bit if only one of first bit is true or if the incoming bit (RX) is true (bc if both are true, it's just a long bit, not a new one).
 
-For the VPWBArbiter, use the oberserver to check for idleness. Short VS Long bit: as long as it's not an even bit and the incoming data bit being written to isn't one, it is a short bit that is being recieved. Otherwise it is a long bit being transmitted. The bit is complete when both the module is idle and the bus is idle, or bit2 is true and no loss of arbitrition, or bit1 is 1 and it's a short bit and arbitrition has not been lost.
+For the VPWBArbiter, use the observer to check for idleness. Short VS Long bit: as long as it's not an even bit and the incoming data bit being written to isn't one, it is a short bit that is being recieved. Otherwise it is a long bit being transmitted. The bit is complete when both the module is idle and the bus is idle, or bit2 is true and no loss of arbitrition, or bit1 is 1 and it's a short bit and arbitrition has not been lost. The arbiter is idle, when it's either already idle, no new bit has been written and bit1 is true, or bit2 is true, and no arbitrition has been lost. Bit1 is true when the bus is idle and when the module is idle and a new bit has been transmitted, or when bit1 is true and it is a short bit and a new bit is being written in, or when if a new bit has been transmitted and and bit 2 is true, and no arbitrition lost. bit 2 is true as long as bit1 is true and it is not a short bit, and no arbitrition lost. (checking all possibilities of what each bit can be in order to ensure arbitrition has not been lost)
 
 VPWBSRO has a counter that counts down every time either load or reload is indicated, to restart the counter and the shift register. There's a mux in between the the para_in and the register holding the previous frame (which is selected when reload is true, otherwise the para_in is shifted in). If all of the bits left are 0, then the shift register is empty(use a NOR gate). The constant 1 should be put at the 12th bit to indicate the EOF.
 
-For VPWBSRI, a counter was added, which increments every time a new bit is added. When the frame is full(the newbit counter should be full), that should be one of 3 criteria(read and enable must be on as well) for the frame to start reading to para out. New Bit indicates when the shift register should start moving bits in. 
+For VPWBSRI, a counter was added, which increments every time a new bit is added, and the frame is full when it its 13, and gets cleared when the shift register gets cleared. When the frame is full(the newbit counter should be full), that should be one of 3 criteria(read and enable must be on as well) for the frame to start reading to para out. New Bit indicates when the shift register should start moving bits in. If the EOF is 0 but the frame is full, it is invalid and must be cleared. The register that holds the frame should only be updated when the is full, enabled, and ready to be read.
 
-For the VPWBFrameQueue, track the number of times something is enqueued with a counter, and have it decriment if dequeue is on so that the counter maintains the number of frames in the queue. This can also be used to check if it's full or empty, can use an AND gate for both;one without negation to check for fullness and one that has both inputs negated to check for emptiness. 4 registers are used for each frame queue(4 max), and there is a mux in between to select between frame in, or recieve the previous frame which depends on location (0,1,2,3 right to left on the circuit. if it's not at the position, then just recieve incoming frame).
+For the VPWBFrameQueue, track the number of frames with a counter, which increments when dequeue is false and when enqueue is true, and have it decriment if dequeue is on and enqueue is not so that the counter maintains the number of frames in the queue. This can also be used to check if it's full or empty, can use an AND gate for both;one without negation to check for fullness and one that has both inputs negated to check for emptiness. 4 registers are used for each frame queue(4 max), and there is a mux in between to select between frame in, or recieve the previous frame which depends on location (0,1,2 right to left on the circuit. if it's not at the position, then just recieve incoming frame-- the 3rd register is going to recieve the frame in regardless, as long as the queue is not full.) Each register also is only enabled for when their position matches the current number of frames in the queue.
 
-VPWBRX- didn't figure out exactly what to do with the care or addr bits, mostly connected some of the pieces together via label.
+VPWBRX- only enqueue if the input is not full and the frame queue is not full. Dequeue when its time to read and the queue is not empty (nothing to dequeue). The serial in is put into the observer to check for idleness. Frame in and frame out are already designated.
 
-VPWBTX is idle when the transmitter is idle or when the FIFO is empty-- I simply used an AND gate on all idle, and empty outputs to indicate idleness. I put a counter to check for the even bit is being written to, which reset whenever a new frame was being written.
+The VPWBTX is idle when the transmitter is idle or when the FIFO is empty-- I simply used an AND gate on empty outputs to indicate idleness. The transmitter is ready to load as long as the queue is not empty, and the SRO is(the output). Both write must be true and the queue cannot be full in order to enqueue. As long are there any bits and they are being shifted in, DW should be true. (use an or on the bits left section of the SRO). The evenbit depends on the 0th bit.
 
-For the VPWBController, since the data is being written to when CS and W is low, and the address is 1 and that can be indicated on the frame transmitter, and the data being read when CS and O is low and can be indicated with an AND gate. Then the data that gets transmitted out depends on what address is being recieved, (couldn't figure out how exactly to deal with the 0 address, but as of now it outputs whatever is in the datain register if it's 0, and W and CS are low) but whenever the address is 1, it just output whatever the reciever outputs. 
+For the VPWBController, since the data is being written to when CS and W is low, and the address is 1 and that can be indicated on the frame transmitter, and the data being read when CS and O is low and can be indicated with an AND gate. Then the data that gets transmitted out depends on what address is being recieved,  but whenever the address is 1, it just output whatever the reciever outputs. If the address is indicated as 0, then the bits must be specifically the care bits (bits 8-11, as described in the project description), the address bits (4-7), then TXI, TBNF, DR, AND ENA (3, 2, 1, and 0 respectively).
 
 ### Changes 
 Needed to add a counter whenever enequeue is on for frame queue module.
 Needed to add muxes in between each register for the frame queue.
+Forgot the NOT full for enqueue in the BTX.
